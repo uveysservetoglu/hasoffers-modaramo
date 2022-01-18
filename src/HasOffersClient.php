@@ -182,7 +182,9 @@ class HasOffersClient
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => $this->getApiConnectUrl().'&'.$http_query_string
+            CURLOPT_URL => $this->getApiConnectUrl().'&'.$http_query_string,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_SSL_VERIFYHOST => 0,
         ]);
 
         $this->last_curl_result = json_decode(curl_exec($curl));
@@ -447,7 +449,7 @@ class HasOffersClient
         $this->url_params = array_merge($this->url_params, $pager);
         return $this;
     }
-    
+
     /**
      * @param $key
      * @param $value
